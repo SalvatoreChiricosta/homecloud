@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - interna
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:5
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"
+    networks:
+      - interna
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+
+networks:
+  interna:
