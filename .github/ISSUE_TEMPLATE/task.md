@@ -1,21 +1,18 @@
 ---
 name: Task
-about: Micro-task del progetto (teoria + pratica)
-title: "#N - "
+about: Attività tecnica del progetto
+title: ""
 labels: ""
 ---
 
-## 🎯 Obiettivo
+## Descrizione
+<!-- Cosa va fatto e perché, in 1-3 frasi -->
 
-
-## 📚 Teoria
-
-
-## 🛠️ Pratica
-1. 
-
-## ✅ Criteri di completamento
+## Task
 - [ ] 
 
-## 💼 Competenza cloud
+## Criteri di accettazione
+- [ ] 
 
+## Note tecniche
+<!-- Decisioni prese, problemi riscontrati e soluzioni -->
