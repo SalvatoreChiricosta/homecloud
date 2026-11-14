@@ -1,0 +1,5 @@
+# Segreti: mai su GitHub
+.env
+*.env
+# Dati dei servizi
+data/
