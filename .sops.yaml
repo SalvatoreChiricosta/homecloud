@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: stacks/.*/secrets\.enc\.yaml$
+    age: age1zgkmcjxlzf96ncf3ghxpmyk9tzpets2hjj47k2502ygpd3saaq6sxjgps5
