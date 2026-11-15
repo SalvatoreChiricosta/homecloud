@@ -1,0 +1,33 @@
+services:
+  wolf:
+    image: ghcr.io/games-on-whales/wolf:stable@sha256:47ce7a0b67ee6645d2c6fefd8fdda7fee49a00e327c39597a04e84a0cd052910
+    container_name: wolf
+    environment:
+      NVIDIA_DRIVER_VOLUME_NAME: nvidia-driver-vol
+      WOLF_RENDER_NODE: /dev/dri/renderD128   # GTX 1650 (pci 01:00.0)
+      TZ: Europe/Rome
+    volumes:
+      - /etc/wolf:/etc/wolf:rw                       # config e stato: stesso percorso su host e container
+      - /var/run/docker.sock:/var/run/docker.sock:rw # serve a Wolf per avviare i container dei giochi
+      - /dev:/dev:rw                                 # gamepad virtuali creati a caldo
+      - /run/udev:/run/udev:rw
+      - nvidia-driver-vol:/usr/nvidia:rw
+    devices:
+      - /dev/dri
+      - /dev/uinput
+      - /dev/uhid
+      - /dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools
+      - /dev/nvidia-caps/nvidia-cap1
+      - /dev/nvidia-caps/nvidia-cap2
+      - /dev/nvidiactl
+      - /dev/nvidia0
+      - /dev/nvidia-modeset
+    device_cgroup_rules:
+      - 'c 13:* rmw'                                 # 13 = dispositivi di input (gamepad, mouse, tastiera)
+    network_mode: host
+    restart: unless-stopped
+
+volumes:
+  nvidia-driver-vol:
+    external: true                                   # creato a mano dalla build del driver
