@@ -5,7 +5,7 @@
 | Interfaccia | Tipo | MAC | IP (prenotazione DHCP) | Ruolo |
 |---|---|---|---|---|
 | `enp7s0` | Ethernet 1 Gbit/s | 98:fa:9b:31:32:07 | 192.168.1.35 | Principale |
-| `wlp0s20f3` | Wi-Fi | dc:fb:48:a7:7f:79 | 192.168.1.36 | Riserva |
+| `wlp0s20f3` | Wi-Fi | dc:fb:48:a7:7f:79 | dinamico (DHCP) | Riserva |
 
 Router: TIM HUB+ (ZTE H388X), prenotazioni in Rete locale → LAN → IP Statico.
 
@@ -17,7 +17,7 @@ Router: TIM HUB+ (ZTE H388X), prenotazioni in Rete locale → LAN → IP Statico
 | `40-ethernet.yaml` | `dhcp4: true` su `enp7s0` (unito da netplan al file precedente) |
 | `60-wifi.yaml` | Wi-Fi con DHCP e `optional: true`; contiene la password: non versionato |
 
-Permessi dei file: `600`.
+Permessi dei file: `600`. Entrambe le interfacce usano `dhcp-identifier: mac` (per impostazione predefinita systemd-networkd usa il DUID, che molti router non associano alle prenotazioni).
 
 ## Routing
 
@@ -27,7 +27,7 @@ Due default route verso `192.168.1.1`: `enp7s0` con metric 100 (preferita) e `wl
 
 - Validare con `netplan generate`.
 - Usare `netplan try` solo se la sessione SSH non passa dall'interfaccia che viene modificata; altrimenti applicare con un riavvio.
-- Accesso di emergenza: `ssh xerosas@192.168.1.36` (Wi-Fi).
+- Accesso di emergenza via Wi-Fi: IP dinamico, visibile nella lista dispositivi del router (il router non applica la prenotazione alla seconda interfaccia con lo stesso hostname).
 
 ## Misure (ping da PC Windows, 100 pacchetti)
 
