@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleList>
+    <emulator name="DOLPHIN">
+        <rule type="staticpath">
+            <entry>/home/retro/bin/dolphin-esde.sh</entry>
+        </rule>
+    </emulator>
+</ruleList>
