@@ -11,7 +11,7 @@
 ## Directory
 
 
-Proprietario: `xerosas` (UID/GID 1000), usato come `PUID`/`PGID` nei container.
+Proprietario: utente amministratore (UID/GID 1000), usato come `PUID`/`PGID` nei container.
 
 ## fstab
 Montaggio tramite UUID con opzioni `defaults,noatime`.
