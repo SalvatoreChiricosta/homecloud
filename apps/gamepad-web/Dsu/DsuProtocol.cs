@@ -82,10 +82,13 @@ public static class DsuProtocol
             s.Has(GamepadButtons.Options), s.Has(GamepadButtons.R3),
             s.Has(GamepadButtons.L3), s.Has(GamepadButtons.Share));
 
-        // Bitmask 2 (dal bit 7 al bit 0): Y, B, A, X, R1, L1, R2, L2
+        // Bitmask 2 (dal bit 7 al bit 0): Y, B, A, X, R1, L1, R2, L2.
+        // ATTENZIONE: il protocollo usa i nomi Nintendo (Y = sinistra, B = basso, A = destra, X = alto),
+        // il nostro enum usa le posizioni Xbox (X = sinistra, A = basso, B = destra, Y = alto).
+        // In Dolphin corrispondono a Square, Cross, Circle, Triangle.
         p[17] = Bits(
-            s.Has(GamepadButtons.Y), s.Has(GamepadButtons.B),
-            s.Has(GamepadButtons.A), s.Has(GamepadButtons.X),
+            s.Has(GamepadButtons.X), s.Has(GamepadButtons.A),
+            s.Has(GamepadButtons.B), s.Has(GamepadButtons.Y),
             s.Has(GamepadButtons.R1), s.Has(GamepadButtons.L1),
             s.Has(GamepadButtons.R2) || s.R2Analog > 0, s.Has(GamepadButtons.L2) || s.L2Analog > 0);
 
@@ -103,10 +106,10 @@ public static class DsuProtocol
         p[25] = Analog(s.Has(GamepadButtons.DpadDown));
         p[26] = Analog(s.Has(GamepadButtons.DpadRight));
         p[27] = Analog(s.Has(GamepadButtons.DpadUp));
-        p[28] = Analog(s.Has(GamepadButtons.Y));
-        p[29] = Analog(s.Has(GamepadButtons.B));
-        p[30] = Analog(s.Has(GamepadButtons.A));
-        p[31] = Analog(s.Has(GamepadButtons.X));
+        p[28] = Analog(s.Has(GamepadButtons.X)); // sinistra (Y Nintendo / Square)
+        p[29] = Analog(s.Has(GamepadButtons.A)); // basso    (B Nintendo / Cross)
+        p[30] = Analog(s.Has(GamepadButtons.B)); // destra   (A Nintendo / Circle)
+        p[31] = Analog(s.Has(GamepadButtons.Y)); // alto     (X Nintendo / Triangle)
         p[32] = Analog(s.Has(GamepadButtons.R1));
         p[33] = Analog(s.Has(GamepadButtons.L1));
         p[34] = s.Has(GamepadButtons.R2) ? (byte)255 : s.R2Analog;
