@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>HomeCloud Gamepad</title>
+  <link rel="stylesheet" href="/pad.css">
+</head>
+<body>
+  <div id="rotate">Ruota il telefono in orizzontale 🔄</div>
+
+  <main id="pad">
+    <section class="shoulders">
+      <button class="btn shoulder" data-btn="L2" data-analog="l">L</button>
+      <button class="btn shoulder z" data-btn="R1">Z</button>
+      <button class="btn shoulder" data-btn="R2" data-analog="r">R</button>
+    </section>
+
+    <section id="stick-zone" class="stick-zone">
+      <div id="stick-base" class="stick-base">
+        <div id="stick-knob" class="stick-knob"></div>
+      </div>
+    </section>
+
+    <section class="center">
+      <div id="player" class="player">HomeCloud</div>
+      <div id="status" class="status">Connessione…</div>
+      <button class="btn start" data-btn="Options">START</button>
+      <button id="fullscreen" class="small" type="button">⛶ Schermo intero</button>
+    </section>
+
+    <section class="face">
+      <button class="btn face-y" data-btn="Y">Y</button>
+      <button class="btn face-x" data-btn="X">X</button>
+      <button class="btn face-a" data-btn="A">A</button>
+      <button class="btn face-b" data-btn="B">B</button>
+    </section>
+  </main>
+
+  <pre id="debug" class="debug" hidden></pre>
+
+  <script src="/pad.js"></script>
+</body>
+</html>
